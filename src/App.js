@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Display from "./components/display"
+import Buttons from "./components/actor"
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+
+  state = {
+      lastClicked: 1234
+  }
+
+  render() {
+      const clickHandler = (v) => {
+          console.log(v.target.id);
+          this.setState({lastClicked: v.target.id})
+      }
+      return (
+          <div>
+                <p>hello</p>
+                <Buttons elements={[1, 2, 3, 4, 5]} handler={clickHandler}/>
+                <Display data={this.state.lastClicked}/>
+          </div>
+  )};
 }
 
 export default App;
